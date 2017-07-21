@@ -3,7 +3,9 @@
   "main": "index.html",
   "dependencies": {
     "polymer": "Polymer/polymer#2.0.2",
-    "chart.js": "^2.6.0"
+    "chart.js": "^2.6.0",
+    "britecharts": "^1.7.2",
+    "d3-selection": "^1.1.0"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
