@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="redux-store.html">
 
 <!-- import template repeater -->
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
@@ -27,47 +28,16 @@
          * @customElement
          * @polymer
          */
-        class BonitaCaseFilter extends Polymer.Element {
+        class BonitaCaseFilter extends ReduxMixin(Polymer.Element) {
             static get is() { return 'bonita-case-filter'; }
-            // set this element's employees property
-            constructor() {
-                super();
 
-                this.processes = [
-                    {
-                        name: 'New Vacation Request',
-                        versions: ['1.0', '1.1', '1.2']
-                    },
-                    {
-                        name: 'Cancel Vacation Request',
-                        versions: ['1.0', '1.1']
-                    },
-                    {
-                        name: 'Modify Pending Vacation Request',
-                        versions: ['1.0']
-                    },
-                    {
-                        name: 'Extract',
-                        versions: ['1.0']
-                    },
-                    {
-                        name: 'Update Vacation Available',
-                        versions: ['1.0']
-                    },
-                    {
-                        name: 'Initiate Vacation Available',
-                        versions: ['1.0']
-                    },
-                    {
-                        name: 'Remove All Business Data',
-                        versions: ['1.0']
-                    }
-                ];
-
+            connectedCallback() {
+                super.connectedCallback();
+                this.processes = this.getState().processes;
                 this.selectedProcess = this.processes[0];
                 this.filter = {processName: this.selectedProcess.name, processVersion: this.selectedProcess.versions[0]};
-                //this.notifyPath('filter');
             }
+
            selectProcess(event){
                this.selectedProcess =this.processes.filter(i => i.name == event.target.value)[0];
                this.filter = {processName: this.selectedProcess.name, processVersion: this.selectedProcess.versions[0]}; // create new filter object to notify parent application on the property change

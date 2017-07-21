@@ -1,0 +1,52 @@
+<link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>
+
+<script>
+
+    const initialSate = {
+        processes: [
+            {
+                name: 'New Vacation Request',
+                versions: ['1.0', '1.1', '1.2']
+            },
+            {
+                name: 'Cancel Vacation Request',
+                versions: ['1.0', '1.1']
+            },
+            {
+                name: 'Modify Pending Vacation Request',
+                versions: ['1.0']
+            },
+            {
+                name: 'Extract',
+                versions: ['1.0']
+            },
+            {
+                name: 'Update Vacation Available',
+                versions: ['1.0']
+            },
+            {
+                name: 'Initiate Vacation Available',
+                versions: ['1.0']
+            },
+            {
+                name: 'Remove All Business Data',
+                versions: ['1.0']
+            }
+        ]
+    };
+
+
+    const reducer = (state, action) => {
+        if (!state) return initialSate;
+
+        switch (action.type) {
+            case 'FILTER_SELECTED':
+                return Object.assign({}, state, { filter: action.filter });
+        }
+    }
+
+    const store = Redux.createStore(reducer);
+    const ReduxMixin = PolymerRedux(store);
+
+</script>
