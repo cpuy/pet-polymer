@@ -1,0 +1,133 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<!-- import template repeater -->
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="bonita-case-list">
+    <template>
+        <H1> Case list </H1>
+        <template is="dom-repeat" items="{{cases}}">
+            <div>ID: <span>{{item.caseId}}</span></div>
+            <div>Start Date: <span>{{item.startDate}}</span></div>
+            <div>Started By: <span>{{item.startedBy.firstName}} {{item.startedBy.lastName}}</span></div>
+        </template>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class BonitaCaseList extends Polymer.Element {
+            static get is() { return 'bonita-case-list'; }
+            // set this element's employees property
+            constructor() {
+                super();
+                this.cases = [
+                    {
+                        caseId: 8005,
+                        startDate: '2017-06-27T07:21:16.576Z',
+                        startedBy: {
+                            id: 29,
+                            username: 'deshawn.howells@acme.com',
+                            firstName: 'Deshawn',
+                            lastName: 'Howells'
+                        }
+                    },
+                    {
+                        caseId: 15001,
+                        startDate: '2017-06-27T21:51:39.294Z',
+                        startedBy: {
+                            id: 40,
+                            username: 'skye.hargreaves@acme.com',
+                            firstName: 'Skye',
+                            lastName: 'Hargreaves'
+                        }
+                    },
+                    {
+                        caseId: 28003,
+                        startDate: '2017-06-30T10:36:20.235Z',
+                        startedBy: {
+                            id: 43,
+                            username: 'stanton.casey@acme.com',
+                            firstName: 'Stanton',
+                            lastName: 'Casey'
+                        }
+                    },
+                    {
+                        caseId: 10009,
+                        startDate: '2017-06-29T15:02:09.529Z',
+                        startedBy: {
+                            id: 7,
+                            username: 'deanne.macgregor@acme.com',
+                            firstName: 'Deanne',
+                            lastName: 'Macgregor'
+                        }
+                    },
+                    {
+                        caseId: 30001,
+                        startDate: '2017-06-29T17:01:50.789Z',
+                        startedBy: {
+                            id: 59,
+                            username: 'vanita.crowe@acme.com',
+                            firstName: 'Vanita',
+                            lastName: 'Crowe'
+                        }
+                    },
+                    {
+                        caseId: 28002,
+                        startDate: '2017-06-29T10:34:47.546Z',
+                        startedBy: {
+                            id: 43,
+                            username: 'stanton.casey@acme.com',
+                            firstName: 'Stanton',
+                            lastName: 'Casey'
+                        }
+                    },
+                    {
+                        caseId: 28001,
+                        startDate: '2017-06-28T10:33:53.774Z',
+                        startedBy: {
+                            id: 43,
+                            username: 'stanton.casey@acme.com',
+                            firstName: 'Stanton',
+                            lastName: 'Casey'
+                        }
+                    },
+                    {
+                        caseId: 28081,
+                        startDate: '2017-06-27T10:33:53.774Z',
+                        startedBy: {
+                            id: 43,
+                            username: 'stanton.casey@acme.com',
+                            firstName: 'Stanton',
+                            lastName: 'Casey'
+                        }
+                    },
+                    {
+                        caseId: 28082,
+                        startDate: '2017-06-27T10:33:53.774Z',
+                        startedBy: {
+                            id: 43,
+                            username: 'stanton.casey@acme.com',
+                            firstName: 'Stanton',
+                            lastName: 'Casey'
+                        }
+                    },
+                    {
+                        caseId: 28083,
+                        startDate: '2017-06-27T10:33:53.774Z',
+                        startedBy: {
+                            id: 43,
+                            username: 'stanton.casey@acme.com',
+                            firstName: 'Stanton',
+                            lastName: 'Casey'
+                        }
+                    }
+                ];
+            }
+        }
+
+        window.customElements.define(BonitaCaseList.is, BonitaCaseList);
+    </script>
+</dom-module>
