@@ -1,0 +1,78 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<!-- import template repeater -->
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="bonita-case-filter">
+    <template>
+        <div>
+            <select name="processes" id="processes" on-change="selectProcess">
+                <template is="dom-repeat" items="{{processes}}">
+                    <option value="[[item.name]]">[[item.name]]</option>
+                </template>
+
+
+            </select>
+            <select name="processVersion" id="processVersion">
+                <template is="dom-repeat" items="{{selectedProcess.versions}}">
+                    <option value="[[item]]">[[item]]</option>
+                </template>
+            </select>
+        </div>
+
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class BonitaCaseFilter extends Polymer.Element {
+            static get is() { return 'bonita-case-filter'; }
+            // set this element's employees property
+            constructor() {
+                super();
+
+                this.processes = [
+                    {
+                        name: 'New Vacation Request',
+                        versions: ['1.0', '1.1', '1.2']
+                    },
+                    {
+                        name: 'Cancel Vacation Request',
+                        versions: ['1.0', '1.1']
+                    },
+                    {
+                        name: 'Modify Pending Vacation Request',
+                        versions: ['1.0']
+                    },
+                    {
+                        name: 'Extract',
+                        versions: ['1.0']
+                    },
+                    {
+                        name: 'Update Vacation Available',
+                        versions: ['1.0']
+                    },
+                    {
+                        name: 'Initiate Vacation Available',
+                        versions: ['1.0']
+                    },
+                    {
+                        name: 'Remove All Business Data',
+                        versions: ['1.0']
+                    }
+                ];
+
+                this.selectedProcess = this.processes[0];
+            }
+           selectProcess(event){
+               this.selectedProcess =this.processes.filter(i => i.name == event.target.value)[0];
+               console.log("selected process: ", this.selectedProcess);
+            };
+
+        }
+
+        window.customElements.define(BonitaCaseFilter.is, BonitaCaseFilter);
+    </script>
+</dom-module>
