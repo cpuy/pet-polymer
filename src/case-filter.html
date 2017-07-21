@@ -68,8 +68,19 @@
             }
            selectProcess(event){
                this.selectedProcess =this.processes.filter(i => i.name == event.target.value)[0];
+               this.processName = this.selectedProcess.name;
                console.log("selected process: ", this.selectedProcess);
             };
+
+
+            static get properties() {
+                return {
+                    processName: {
+                        type: String,
+                        notify: true
+                    }
+                };
+            }
 
         }
 

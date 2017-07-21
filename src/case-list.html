@@ -3,9 +3,12 @@
 <!-- import template repeater -->
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
 
+<!-- import case filter -->
+<link rel="import" href="/src/case-filter.html">
+
 <dom-module id="bonita-case-list">
     <template>
-        <H1> Case list </H1>
+        <H2> Case list </H2>
         <template is="dom-repeat" items="{{cases}}">
             <div>ID: <span>{{item.caseId}}</span></div>
             <div>Start Date: <span>{{item.startDate}}</span></div>
