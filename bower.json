@@ -3,9 +3,11 @@
   "main": "index.html",
   "dependencies": {
     "polymer": "Polymer/polymer#2.0.2",
+
     "polymer-redux": "^1.0.1",
     "redux": "^3.7.2",
-    "chart.js": "^2.6.0"
+    "chart.js": "^2.6.0",
+    "chart-elements": "git://github.com/robdodson/chart-elements.git#^3.1.3"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
