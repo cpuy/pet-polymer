@@ -15,7 +15,7 @@
 <dom-module id="bonita-app">
     <template>
         <H1>Omar's LA</H1>
-        <bonita-chart></bonita-chart>
+        <bonita-chart data="{{data}}"></bonita-chart>
         <bonita-case-filter filter="{{filter}}"></bonita-case-filter>
         <bonita-case-list filter="{{filter}}"></bonita-case-list>
 
@@ -27,10 +27,82 @@
          * @polymer
          */
         class BonitaApp extends Polymer.Element {
-            static get is() { return 'bonita-app'; }
+            static get is() {
+                return 'bonita-app';
+            }
+
             // set this element's employees property
             constructor() {
                 super();
+                this.datasetTemplate =  {
+                        labels: [
+                            "Late",
+                            "On Time",
+                            "Predicted Late"
+                        ],
+                        datasets: [
+                            {
+                                data: [24, 49, 4],
+                                backgroundColor: [
+                                    "#c10909",
+                                    "#05b203",
+                                    "#fca402"
+                                ],
+                                hoverBackgroundColor: [
+                                    "#9e0606",
+                                    "#069604",
+                                    "#ef9c02"
+                                ]
+                            }]
+                    };
+                this.data = this.datasetTemplate;
+
+
+
+            }
+
+            static get properties() {
+                return {
+                    filter: {
+                        type: Object,
+                        notify:true,
+                        observer: 'filterChangeObserver'
+                    }
+                };
+            }
+
+            filterChangeObserver(newValue) {
+                console.log("Filter changed in app", newValue);
+                this.data = this.getMockData(newValue);
+                console.log("Updated chart data", this.data)
+            }
+
+            getMockData(filter) {
+
+                var result = Object.assign({}, this.data, this.datasetTemplate);
+                console.log("temporary result (template)", result);
+                if(filter.processName == 'New Vacation Request' && filter.processVersion ==1.0) {
+                    result.datasets[0].data = [0,3,1];
+                    return result;
+                }
+                if(filter.processName == 'New Vacation Request' && filter.processVersion ==1.1) {
+                    result.datasets[0].data = [0,2,0];
+                    return result;
+                }
+                if(filter.processName == 'New Vacation Request' && filter.processVersion ==1.2) {
+                    result.datasets[0].data = [0,1,1];
+                    return result;
+                }
+                if(filter.processName == 'Cancel Vacation Request' && filter.processVersion ==1.0) {
+                    result.datasets[0].data = [0,1,0];
+                    return result;
+                }
+                if(filter.processName == 'Cancel Vacation Request' && filter.processVersion ==1.1) {
+                    result.datasets[0].data = [0,0,1];
+                    return result;
+                }
+                result.datasets[0].data = [0,0,0];
+                return result;
             }
 
         }
