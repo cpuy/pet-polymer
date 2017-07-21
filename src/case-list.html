@@ -7,14 +7,47 @@
 <link rel="import" href="/src/case-filter.html">
 
 <dom-module id="bonita-case-list">
-    <template>
-        <H2> Case list </H2>
 
-        <template is="dom-repeat" items="{{filteredCases}}">
-            <div>ID: <span>{{item.caseId}}</span></div>
-            <div>Start Date: <span>{{item.startDate}}</span></div>
-            <div>Started By: <span>{{item.startedBy.firstName}} {{item.startedBy.lastName}}</span></div>
-        </template>
+    <template>
+        <style>
+
+            * {margin: 0; padding: 0;}
+
+            div {
+                margin: 5px;
+            }
+
+            ul {
+                list-style-type: none;
+                width: 300px;
+            }
+
+            li p {
+                font: 200 12px/1.5 Georgia, Times New Roman, serif;
+                padding-left: 20px;
+            }
+
+            li {
+                padding: 10px;
+                overflow: auto;
+            }
+
+            li:hover {
+                background: #eee;
+                cursor: pointer;
+            }
+
+        </style>
+        <H2> Case list </H2>
+        <ul>
+            <template is="dom-repeat" items="{{filteredCases}}">
+                <li>
+                    <h3>Id: <span>{{item.caseId}}</span></h3>
+                    <p>Start Date: <span>{{item.startDate}}</span></p>
+                    <p>Started By: <span>{{item.startedBy.firstName}} {{item.startedBy.lastName}}</span></p>
+                </li>
+            </template>
+        </ul>
     </template>
 
     <script>
