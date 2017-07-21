@@ -31,6 +31,11 @@
         class BonitaCaseFilter extends ReduxMixin(Polymer.Element) {
             static get is() { return 'bonita-case-filter'; }
 
+            ready() {
+                super.ready();
+                this.addEventListener('state-changed', () => console.log('redux state has changed'))
+            }
+
             connectedCallback() {
                 super.connectedCallback();
                 this.processes = this.getState().processes;
@@ -42,6 +47,13 @@
                this.selectedProcess =this.processes.filter(i => i.name == event.target.value)[0];
                this.filter = {processName: this.selectedProcess.name, processVersion: this.selectedProcess.versions[0]}; // create new filter object to notify parent application on the property change
                console.log("selected process: ", this.selectedProcess);
+
+               this.dispatch({
+                   type: 'FILTER_SELECTED',
+                   filter: {
+                       processName: this.selectedProcess.name
+                   }
+               })
             };
 
             selectVersion(event){
