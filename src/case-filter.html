@@ -13,7 +13,7 @@
 
 
             </select>
-            <select name="processVersion" id="processVersion">
+            <select name="processVersion" id="processVersion" on-change="selectVersion">
                 <template is="dom-repeat" items="{{selectedProcess.versions}}">
                     <option value="[[item]]">[[item]]</option>
                 </template>
@@ -65,18 +65,25 @@
                 ];
 
                 this.selectedProcess = this.processes[0];
+                this.filter = {processName: this.selectedProcess.name, processVersion: this.selectedProcess.versions[0]};
+                //this.notifyPath('filter');
             }
            selectProcess(event){
                this.selectedProcess =this.processes.filter(i => i.name == event.target.value)[0];
-               this.processName = this.selectedProcess.name;
+               this.filter = {processName: this.selectedProcess.name, processVersion: this.selectedProcess.versions[0]}; // create new filter object to notify parent application on the property change
                console.log("selected process: ", this.selectedProcess);
+            };
+
+            selectVersion(event){
+                this.filter = Object.assign({}, this.filter, {processVersion:event.target.value}); // create new filter object to notify parent application on the property change
+                console.log("selected version: ", this.filter.processVersion);
             };
 
 
             static get properties() {
                 return {
-                    processName: {
-                        type: String,
+                    filter: {
+                        type: Object,
                         notify: true
                     }
                 };
