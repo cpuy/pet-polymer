@@ -3,6 +3,9 @@
 <!-- import template repeater -->
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
 
+<!-- import chart -->
+<link rel="import" href="/src/chart.html">
+
 <!-- import case filter -->
 <link rel="import" href="/src/case-filter.html">
 
@@ -12,8 +15,7 @@
 <dom-module id="bonita-app">
     <template>
         <H1>Omar's LA</H1>
-        <div>Process Name: {{filter.processName}}</div>
-        <div>Process Version: {{filter.processVersion}}</div>
+        <bonita-chart></bonita-chart>
         <bonita-case-filter filter="{{filter}}"></bonita-case-filter>
         <bonita-case-list filter="{{filter}}"></bonita-case-list>
 

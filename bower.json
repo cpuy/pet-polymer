@@ -2,7 +2,8 @@
   "name": "pet-polymer",
   "main": "index.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#2.0.2"
+    "polymer": "Polymer/polymer#2.0.2",
+    "chart.js": "^2.6.0"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",

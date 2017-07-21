@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../bower_components/chart-elements/chart-elements.html">
+
+<dom-module id="bonita-chart">
+    <template>
+        <style>
+                .square-chart {
+                    width: 300px;
+                    height: 300px;
+                }
+        </style>
+
+        <chart-pie id="chart" class="square-chart" data="[[data]]"></chart-pie>
+
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class BonitaChart extends Polymer.Element {
+            static get is() { return 'bonita-chart'; }
+            // set this element's employees property
+            constructor() {
+                super();
+            }
+
+            static get properties() {
+                return {
+                    data: {
+                        type: Object,
+                        notify: true,
+                        value: {
+                            predictedLate: { "count": 4 },
+                            late: { "count": 24 },
+                            onTime: {"count": 49},
+                            labels: [
+                                "Late",
+                                "On Time",
+                                "Predicted Late"
+                            ],
+                            datasets: [
+                                {
+                                    data: [24, 49, 4],
+                                    backgroundColor: [
+                                        "#c10909",
+                                        "#05b203",
+                                        "#fca402"
+                                    ],
+                                    hoverBackgroundColor: [
+                                        "#9e0606",
+                                        "#069604",
+                                        "#ef9c02"
+                                    ]
+                                }]
+                        }
+                    }
+                };
+            }
+
+        }
+
+        window.customElements.define(BonitaChart.is, BonitaChart);
+    </script>
+</dom-module>
+
