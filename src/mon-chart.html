@@ -1,0 +1,23 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="mon-chart">
+
+    <template>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </template>
+
+    <script>
+
+        import Chart from '../bower_components/chart.js';
+
+        class MonChart extends Polymer.Element {
+            static get is() { return 'mon-chart'; }
+
+
+        }
+
+
+        window.customElements.define(MonChart.is, MonChart);
+    </script>
+</dom-module>

@@ -8,6 +8,7 @@
 
 <!-- import case list -->
 <link rel="import" href="/src/case-list.html">
+<link rel="import" href="/src/mon-chart.html">
 
 <dom-module id="bonita-app">
     <template>
@@ -15,6 +16,7 @@
         <div>Process Name: {{filter.processName}}</div>
         <div>Process Version: {{filter.processVersion}}</div>
         <bonita-case-filter filter="{{filter}}"></bonita-case-filter>
+        <mon-chart></mon-chart>
         <bonita-case-list filter="{{filter}}"></bonita-case-list>
 
     </template>
