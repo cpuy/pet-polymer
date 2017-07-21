@@ -9,7 +9,8 @@
 <dom-module id="bonita-case-list">
     <template>
         <H2> Case list </H2>
-        <template is="dom-repeat" items="{{cases}}">
+
+        <template is="dom-repeat" items="{{filteredCases}}">
             <div>ID: <span>{{item.caseId}}</span></div>
             <div>Start Date: <span>{{item.startDate}}</span></div>
             <div>Started By: <span>{{item.startedBy.firstName}} {{item.startedBy.lastName}}</span></div>
@@ -35,6 +36,10 @@
                             username: 'deshawn.howells@acme.com',
                             firstName: 'Deshawn',
                             lastName: 'Howells'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.0'
                         }
                     },
                     {
@@ -45,6 +50,10 @@
                             username: 'skye.hargreaves@acme.com',
                             firstName: 'Skye',
                             lastName: 'Hargreaves'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.1'
                         }
                     },
                     {
@@ -55,6 +64,10 @@
                             username: 'stanton.casey@acme.com',
                             firstName: 'Stanton',
                             lastName: 'Casey'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.2'
                         }
                     },
                     {
@@ -65,6 +78,10 @@
                             username: 'deanne.macgregor@acme.com',
                             firstName: 'Deanne',
                             lastName: 'Macgregor'
+                        },
+                        process: {
+                            name: 'Cancel Vacation Request',
+                            version: '1.0'
                         }
                     },
                     {
@@ -75,6 +92,10 @@
                             username: 'vanita.crowe@acme.com',
                             firstName: 'Vanita',
                             lastName: 'Crowe'
+                        },
+                        process: {
+                            name: 'Cancel Vacation Request',
+                            version: '1.1'
                         }
                     },
                     {
@@ -85,6 +106,10 @@
                             username: 'stanton.casey@acme.com',
                             firstName: 'Stanton',
                             lastName: 'Casey'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.0'
                         }
                     },
                     {
@@ -95,6 +120,10 @@
                             username: 'stanton.casey@acme.com',
                             firstName: 'Stanton',
                             lastName: 'Casey'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.0'
                         }
                     },
                     {
@@ -105,6 +134,10 @@
                             username: 'stanton.casey@acme.com',
                             firstName: 'Stanton',
                             lastName: 'Casey'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.1'
                         }
                     },
                     {
@@ -115,6 +148,10 @@
                             username: 'stanton.casey@acme.com',
                             firstName: 'Stanton',
                             lastName: 'Casey'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.2'
                         }
                     },
                     {
@@ -125,9 +162,35 @@
                             username: 'stanton.casey@acme.com',
                             firstName: 'Stanton',
                             lastName: 'Casey'
+                        },
+                        process: {
+                            name: 'New Vacation Request',
+                            version: '1.0'
                         }
                     }
                 ];
+            }
+
+            filterChangeObserver(newValue){
+                this.filteredCases = this.filterCases();
+                console.log("Filter changed", event);
+            }
+
+            filterCases() {
+                if(this.filter && this.filter.processName) {
+                    return this.cases.filter(i=> (i.process.name == this.filter.processName && i.process.version == this.filter.processVersion));
+                }
+            }
+
+            static get properties() {
+                return {
+                    filter: {
+                        type: Object,
+                        notify: true,
+                        reflectToAttribute: true,
+                        observer: 'filterChangeObserver'
+                    }
+                };
             }
         }
 
