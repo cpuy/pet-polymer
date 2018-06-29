@@ -39,15 +39,17 @@
 
         </style>
         <H2> Case list </H2>
-        <ul>
-            <template is="dom-repeat" items="{{filteredCases}}">
-                <li>
-                    <h3>Id: <span>{{item.caseId}}</span></h3>
-                    <p>Start Date: <span>{{item.startDate}}</span></p>
-                    <p>Started By: <span>{{item.startedBy.firstName}} {{item.startedBy.lastName}}</span></p>
-                </li>
-            </template>
-        </ul>
+        <div>
+            <ul>
+                <template is="dom-repeat" items="{{filteredCases}}">
+                    <li>
+                        <h3>Id: <span>{{item.caseId}}</span></h3>
+                        <p>Start Date: <span>{{item.startDate}}</span></p>
+                        <p>Started By: <span>{{item.startedBy.firstName}} {{item.startedBy.lastName}}</span></p>
+                    </li>
+                </template>
+            </ul>
+        </div>
     </template>
 
     <script>
